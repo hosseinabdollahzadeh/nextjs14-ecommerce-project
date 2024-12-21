@@ -1,7 +1,14 @@
 import "./globals.css";
+import BootstrapClient from "@/components/libraries/Bootstrap";
 
 export default function RootLayout({ children }) {
   return (
-    <h2>فروشگاه اینترنتی (با استفاده از فریم ورک نکست)</h2>
+    <html lang="fa" dir="rtl">
+      <body>
+      {children}
+
+      <BootstrapClient />
+      </body>
+    </html>
   );
 }
