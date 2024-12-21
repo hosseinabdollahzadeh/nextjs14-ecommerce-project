@@ -1,5 +1,7 @@
+import Features from "@/components/Features";
+
 export default function Home() {
-  return (
-    <h2>فروشگاه اینترنتی (ساخته شده با نکست 14)</h2>
-  );
+    return (
+        <Features/>
+    );
 }
