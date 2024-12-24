@@ -5,4 +5,18 @@ const getBlurDataUrl = () => {
 const numberFormat = (number) => {
     return new Intl.NumberFormat().format(number)
 }
-export {getBlurDataUrl, numberFormat}
+
+const handleError = (message) => {
+    if(typeof message === "object"){
+        const errors = [];
+        Object.keys(message).map(key => {
+            message[key].map(e => {
+                errors.push(e)
+            })
+        })
+        return errors.join();
+    }
+    return message;
+}
+
+export {getBlurDataUrl, numberFormat, handleError}

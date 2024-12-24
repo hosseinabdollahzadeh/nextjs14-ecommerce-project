@@ -8,9 +8,12 @@ import {toast} from "react-toastify";
 export default function FormContact() {
     const [state, formAction] = useFormState(create, {})
     useEffect(() => {
-        if(state?.status === "error"){
-            toast.error(state.message)
-        }
+        toast(state?.message, {type: `${state.status}`})
+        // if(state?.status === "error"){
+        //     toast.error(state.message)
+        // }else {
+        //     toast.success(state.message)
+        // }
     }, [state]);
     return (
         <div className="form_container">
