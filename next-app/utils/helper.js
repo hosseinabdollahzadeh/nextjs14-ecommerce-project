@@ -7,7 +7,7 @@ const numberFormat = (number) => {
 }
 
 const handleError = (message) => {
-    if(typeof message === "object"){
+    if (typeof message === "object") {
         const errors = [];
         Object.keys(message).map(key => {
             message[key].map(e => {
@@ -19,4 +19,8 @@ const handleError = (message) => {
     return message;
 }
 
-export {getBlurDataUrl, numberFormat, handleError}
+const salePercent = (price, salePrice) => {
+    return Math.round(((price - salePrice) / price) * 100);
+}
+
+export {getBlurDataUrl, numberFormat, handleError, salePercent}

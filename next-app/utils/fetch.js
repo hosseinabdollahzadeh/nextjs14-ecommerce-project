@@ -11,7 +11,7 @@ const getFetch = async (url) => {
         const data = await res.json();
         return data.data;
     } else {
-        throw new Error(`مشکل در دیافت اطلاعات : ${res.status}`);
+        throw new Error(`مشکل در دریافت اطلاعات : ${res.status}`);
     }
 }
 const postFetch = async (url, body) => {

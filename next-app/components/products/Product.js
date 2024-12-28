@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {getBlurDataUrl, numberFormat} from "@/utils/helper";
+import Link from "next/link";
 
 export default function Product({product}) {
     return (
@@ -21,7 +22,9 @@ export default function Product({product}) {
                 </div>
                 <div className="detail-box">
                     <h5>
-                        {product.name}
+                        <Link href={`/products/${product.slug}`}>
+                            {product.name}
+                        </Link>
                     </h5>
                     <p>
                         {product.description}
