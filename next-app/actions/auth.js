@@ -62,7 +62,7 @@ async function checkOtp(stateOtp, formData) {
         }
     }
     const loginToken = cookies().get('login_token')
-    if(!loginToken) {
+    if (!loginToken) {
         return {
             status: "error",
             message: "توکن ورودی شما معتبر نیست. یک بار دیگر تلاش کنید."
@@ -89,8 +89,26 @@ async function checkOtp(stateOtp, formData) {
             message: handleError(data.message)
         }
     }
-
-
 }
 
-export {login, checkOtp}
+async function me() {
+    const token = cookies().get('token')
+    if (!token) {
+        return {
+            error: "Not Authorized"
+        }
+    }
+
+    const data = await postFetch('/auth/me', {}, {'Authorization': `Bearer ${token.value}`})
+    if (data.status === 'success') {
+        return {
+            user: data.data
+        }
+    } else {
+        return {
+            error: "User Forbidden"
+        }
+    }
+}
+
+export {login, checkOtp, me}

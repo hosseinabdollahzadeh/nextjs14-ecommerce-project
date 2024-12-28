@@ -14,14 +14,15 @@ const getFetch = async (url) => {
         throw new Error(`مشکل در دریافت اطلاعات : ${res.status}`);
     }
 }
-const postFetch = async (url, body) => {
+const postFetch = async (url, body, headers = {}) => {
     const res = await fetch(`http://plaravelapi.test/api${url}`, {
         cache: 'no-store',
         method: 'POST',
         body: JSON.stringify(body),
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            ...headers
         }
     });
 
