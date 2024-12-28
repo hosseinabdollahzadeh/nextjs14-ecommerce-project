@@ -6,7 +6,6 @@ import Contact from "@/components/contact/Contact";
 
 export default async function Home() {
     const productsTab = await getFetch('/products/products-tabs')
-    console.log(productsTab);
     return (
         <>
             <Features/>
