@@ -5,14 +5,17 @@ import {checkOtp, login} from "@/actions/auth";
 import {useContext, useEffect} from "react";
 import {toast} from "react-toastify";
 import AuthContext from "@/context/AuthContext";
+import {useRouter} from "next/navigation";
 
 export default function CheckOtpForm() {
     const [stateOtp, formActionOtp] = useFormState(checkOtp, {})
     const {loginContext} = useContext(AuthContext)
+    const router = useRouter()
     useEffect(() => {
         toast(stateOtp?.message, {type: `${stateOtp.status}`})
         if (stateOtp?.status === 'success') {
             loginContext(stateOtp.user)
+            router.push('/')
         }
     }, [stateOtp]);
     return (
