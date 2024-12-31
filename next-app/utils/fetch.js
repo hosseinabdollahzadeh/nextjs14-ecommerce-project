@@ -1,9 +1,10 @@
-const getFetch = async (url) => {
+const getFetch = async (url, headers = {}) => {
     const res = await fetch(`http://plaravelapi.test/api${url}`, {
         cache: 'no-store',
         headers: {
             'Content-Type': 'application/json',
-            Accept: 'application/json'
+            Accept: 'application/json',
+            ...headers
         }
     });
 
