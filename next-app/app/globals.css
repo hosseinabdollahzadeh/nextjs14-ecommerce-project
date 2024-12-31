@@ -1314,3 +1314,9 @@ a:focus {
     font-family: "Vazir", sans-serif !important;
     direction: rtl;
 }
+
+.form-delete-address{
+    position: absolute;
+    left: 16px;
+    bottom: 18px;
+}
