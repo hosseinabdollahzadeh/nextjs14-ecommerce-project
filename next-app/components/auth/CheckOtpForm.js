@@ -6,6 +6,7 @@ import {useContext, useEffect} from "react";
 import {toast} from "react-toastify";
 import AuthContext from "@/context/AuthContext";
 import {useRouter} from "next/navigation";
+import ResendOtpButton from "@/components/auth/ResendOtpButton";
 
 export default function CheckOtpForm() {
     const [stateOtp, formActionOtp] = useFormState(checkOtp, {})
@@ -28,6 +29,8 @@ export default function CheckOtpForm() {
                     </div>
                     <SubmitButton title="تأیید" style="btn btn-primary btn-auth"/>
                 </form>
+
+                <ResendOtpButton />
             </div>
         </div>
     )

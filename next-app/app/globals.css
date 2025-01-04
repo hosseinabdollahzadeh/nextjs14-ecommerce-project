@@ -1315,7 +1315,13 @@ a:focus {
     direction: rtl;
 }
 
-.form-delete-address{
+.resend-otp-btn {
+    position: absolute;
+    left: 15px;
+    bottom: 16px;
+}
+
+.form-delete-address {
     position: absolute;
     left: 16px;
     bottom: 18px;
