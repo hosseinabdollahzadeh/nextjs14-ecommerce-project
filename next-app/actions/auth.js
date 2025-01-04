@@ -111,4 +111,20 @@ async function me() {
     }
 }
 
-export {login, checkOtp, me}
+async function logout() {
+    const token = cookies().get('token')
+
+    const data = await postFetch('/auth/logout', {}, {'Authorization': `Bearer ${token.value}`})
+    if (data.status === 'success') {
+        cookies().delete('token')
+        return {
+            success: "You are logged out"
+        }
+    } else {
+        return {
+            error: "User Forbidden"
+        }
+    }
+}
+
+export {login, checkOtp, me, logout}
