@@ -3,11 +3,15 @@
 import {useDispatch, useSelector} from "react-redux";
 import Image from "next/image";
 import {getBlurDataUrl, numberFormat, salePercent} from "@/utils/helper";
-import {clearCart, decrement, increment, removeFromCart} from "@/redux/slices/cartSlice";
+import {clearCart, decrement, increment, removeFromCart, totalAmountCart} from "@/redux/slices/cartSlice";
 import Link from "next/link";
+import Coupon from "@/components/cart/Coupon";
+import {useState} from "react";
 
 export default function cartPage() {
+    const [coupon, setCoupon] = useState({code: "", percent: 0})
     const state = useSelector((state => state.shoppingCart))
+    const totalAmount = useSelector(totalAmountCart)
     const dispatch = useDispatch()
     return (
         <>
@@ -93,14 +97,7 @@ export default function cartPage() {
                                     </div>
                                 </div>
                                 <div className="row mt-4">
-                                    <div className="col-12 col-md-6">
-                                        <div className="input-group mb-3">
-                                            <input type="text" className="form-control" placeholder="کد تخفیف"/>
-                                            <button className="input-group-text" id="basic-addon2">اعمال کد
-                                                تخفیف
-                                            </button>
-                                        </div>
-                                    </div>
+                                    <Coupon setCoupon={setCoupon}/>
                                     <div className="col-12 col-md-6 d-flex justify-content-end align-items-baseline">
                                         <div>
                                             انتخاب آدرس
@@ -124,21 +121,21 @@ export default function cartPage() {
                                                     <li className="list-group-item d-flex justify-content-between">
                                                         <div>مجموع قیمت :</div>
                                                         <div>
-                                                            535,000 تومان
+                                                            {numberFormat(totalAmount)} تومان
                                                         </div>
                                                     </li>
                                                     <li className="list-group-item d-flex justify-content-between">
                                                         <div>تخفیف :
-                                                            <span className="text-danger ms-1">10%</span>
+                                                            <span className="text-danger ms-1">{coupon.percent}%</span>
                                                         </div>
                                                         <div className="text-danger">
-                                                            53,500 تومان
+                                                            {numberFormat((totalAmount * coupon.percent) / 100)} تومان
                                                         </div>
                                                     </li>
                                                     <li className="list-group-item d-flex justify-content-between">
                                                         <div>قیمت پرداختی :</div>
                                                         <div>
-                                                            481,500 تومان
+                                                            {numberFormat((totalAmount - (totalAmount * coupon.percent) / 100))} تومان
                                                         </div>
                                                     </li>
                                                 </ul>
